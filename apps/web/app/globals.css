@@ -144,3 +144,15 @@ button{min-height:44px}
 .studio-dashboard > *, .studio-editor-layout > *, .studio-dashboard input, .studio-dashboard select, .studio-editor-layout input, .studio-editor-layout select{min-width:0;max-width:100%}
 .studio-dashboard, .studio-editor-layout{overflow-wrap:anywhere}
 @media(max-width:600px){.studio-editor-nav{display:flex;flex-wrap:wrap;align-items:center}.studio-editor-nav h1{margin:0}.studio-editor-layout{gap:16px}.studio-preview-backdrop{padding:12px}.studio-preview{max-height:calc(100dvh - 24px)}}
+
+.studio-mobile-tools,.studio-tools-drawer{display:none}
+@media(max-width:900px){
+  .studio-dashboard .studio-sidebar{display:none}
+  .studio-mobile-tools{display:block}
+  .studio-dashboard>.studio-tools-drawer[open]{display:block;position:fixed;inset:0 auto 0 0;margin:0;width:min(86vw,340px);max-width:none;height:100dvh;max-height:none;overflow:auto;overscroll-behavior:contain;scrollbar-width:none;background:#fff8f2;color:#3c1a28}
+  .studio-tools-drawer::-webkit-scrollbar{display:none}
+  .studio-tools-drawer::backdrop{background:rgba(14,6,10,.55)}
+  .studio-tools-drawer-panel{min-height:100%;padding:20px;padding-bottom:max(20px,env(safe-area-inset-bottom))}
+  .studio-tools-drawer .studio-side-link{min-width:0;border:0}
+}
+@media(min-width:901px){.studio-tools-drawer[open]::backdrop{background:none}}
