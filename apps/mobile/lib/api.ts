@@ -1,0 +1,4 @@
+import {authStore} from './auth-store';
+const base=()=>String(process.env.EXPO_PUBLIC_API_URL||'').replace(/\/$/,'');
+export async function api<T=any>(path:string,init:RequestInit={}){const token=await authStore.get();const url=`${base()}${path}`;if(!base())throw new Error('EXPO_PUBLIC_API_URL is not configured');const r=await fetch(url,{...init,headers:{'content-type':'application/json','x-mwahli-client':'mobile',...(token?{authorization:`Bearer ${token}`}:{}) ,...(init.headers||{})}});const d=await r.json().catch(()=>({}));if(r.status===401&&token)await authStore.clear();if(!r.ok)throw new Error(d.error||`Request failed (${r.status})`);return d as T}
+export async function signIn(email:string,password:string){const d=await api<any>('/api/auth/login',{method:'POST',body:JSON.stringify({email,password,mode:'login'})});if(d.mobileToken)await authStore.set(d.mobileToken);return d}

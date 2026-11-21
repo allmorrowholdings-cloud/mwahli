@@ -1,0 +1,26 @@
+{
+  "expo": {
+    "name": "MWAHLI",
+    "slug": "mwahli",
+    "scheme": "mwahli",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "automatic",
+    "newArchEnabled": true,
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.mwahli.app",
+      "infoPlist": {
+        "NSPhotoLibraryUsageDescription": "MWAHLI uses selected photos only when you add them to a private memory or Studio experience.",
+        "NSMicrophoneUsageDescription": "MWAHLI uses the microphone only when you record a voice memory or message."
+      }
+    },
+    "android": {
+      "package": "com.mwahli.app",
+      "adaptiveIcon": {"backgroundColor": "#6F173A"},
+      "permissions": ["POST_NOTIFICATIONS"]
+    },
+    "plugins": ["expo-router", "expo-secure-store", "expo-notifications", "expo-image-picker"],
+    "experiments": {"typedRoutes": true}
+  }
+}

@@ -1,0 +1,11 @@
+node_modules
+.next
+.expo
+.git
+.env
+.env.*
+!.env.example
+!.env.production.example
+preview/screenshots
+*.log
+.DS_Store

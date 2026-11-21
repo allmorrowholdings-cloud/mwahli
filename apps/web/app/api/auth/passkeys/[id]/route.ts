@@ -1,0 +1,2 @@
+import {auth,json} from '@/lib/http';import {query} from '@/lib/db';import {audit} from '@/lib/audit';
+export async function DELETE(req:Request,{params}:{params:Promise<{id:string}>}){const a=await auth();if('response'in a)return a.response;const {id}=await params;const r=await query('delete from passkey_credential where id=$1 and user_id=$2 returning id',[id,a.session.sub]);if(!r.rows[0])return json({error:'Passkey not found.'},404);await audit(a.session.sub,'passkey.delete','app_user',a.session.sub,{},'restricted',req);return json({ok:true})}

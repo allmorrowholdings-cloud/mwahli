@@ -1,0 +1,142 @@
+.mwahli-cinematic > .mwahli-public-nav,
+body > header.nav {
+  position: relative;
+}
+
+.mwahli-public-nav .nav-actions > a.send-love {
+  display: inline-flex;
+}
+
+.cinematic-hero.mwahli-textured,
+.hero#home {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(16px, 4vw, 64px);
+  min-height: 610px;
+  padding: clamp(44px, 6vw, 84px) clamp(24px, 6vw, 94px) 76px;
+  background: radial-gradient(ellipse at 72% 45%, #461625, transparent 60%), #12090f;
+}
+
+.home-hero-art {
+  display: block;
+  width: min(100%, 565px);
+  max-height: 535px;
+  margin-inline: auto;
+  object-fit: contain;
+}
+
+.cinematic-hero .hero-copy-new,
+#home .hero-text {
+  display: block;
+  min-height: 0;
+  padding: 0;
+}
+
+.cinematic-hero .hero-copy-new h1,
+#home .hero-text h1 {
+  font-size: clamp(60px, 7.4vw, 112px);
+  line-height: .85;
+}
+
+.cinematic-hero .hero-actions,
+#home .hero-actions {
+  flex-wrap: wrap;
+}
+
+.flow-assemble .assemble-card img,
+.possibilities .possibility-card img {
+  display: block;
+  width: 100%;
+  height: 145px;
+  padding: 10px;
+  background: #211019;
+  object-fit: contain;
+}
+
+.flow-assemble .assemble-card > div,
+.possibilities .possibility-card > div {
+  text-align: center;
+}
+
+.flow-assemble > .flow-cta,
+.flow .possibilities > a {
+  display: flex;
+  width: fit-content;
+  margin-inline: auto;
+}
+
+.emotion-photo img[src$="mwahli-card-together.webp"],
+.card-photo img[src$="mwahli-card-together.webp"] {
+  object-fit: contain;
+}
+
+.home-studio {
+  max-width: 1240px;
+  margin: 72px auto 0;
+  padding-inline: clamp(20px, 5vw, 64px);
+}
+
+.home-studio h2 {
+  max-width: 25ch;
+  margin: 0 auto;
+  color: #fff4ee;
+  font: 400 clamp(30px, 4vw, 53px)/1.12 Georgia, serif;
+  text-align: center;
+}
+
+.home-studio-stack {
+  display: flex;
+  justify-content: safe center;
+  isolation: isolate;
+  overflow-x: auto;
+  padding: 30px 12px 32px;
+  scroll-padding-inline: 12px;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: thin;
+  scrollbar-color: #99435b transparent;
+}
+
+.home-studio-stack a {
+  display: grid;
+  flex: 0 0 clamp(165px, 23vw, 236px);
+  min-height: 122px;
+  place-items: center;
+  padding: 16px 26px;
+  border: 1px solid #ab626c;
+  border-radius: 20px;
+  background: linear-gradient(145deg, #67243a, #291019);
+  box-shadow: 0 12px 20px #08030799;
+  color: #fff4ee;
+  font: 400 clamp(20px, 2.6vw, 30px)/1.1 Georgia, serif;
+  text-align: center;
+  scroll-snap-align: start;
+  transform: translateY(var(--offset, 0));
+  transition: transform 180ms ease, border-color 180ms ease;
+}
+
+.home-studio-stack a + a { margin-inline-start: -12px; }
+.home-studio-stack a:nth-child(even) { --offset: 12px; }
+.home-studio-stack a:is(:hover, :focus-visible) {
+  z-index: 1;
+  border-color: #f7bb9d;
+  transform: translateY(-8px);
+}
+.home-studio-stack a:focus-visible { outline: 2px solid #f7bb9d; outline-offset: 3px; }
+
+@media (max-width: 720px) {
+  .cinematic-hero.mwahli-textured,
+  .hero#home {
+    grid-template-columns: minmax(0, 1fr);
+    min-height: 0;
+    padding-block: 38px 42px;
+  }
+
+  .home-hero-art { width: min(82%, 350px); }
+  .cinematic-hero .hero-copy-new h1,
+  #home .hero-text h1 { font-size: clamp(52px, 12vw, 78px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-studio-stack a { transition: none; }
+}

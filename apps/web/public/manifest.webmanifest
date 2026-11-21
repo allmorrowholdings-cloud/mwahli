@@ -1,0 +1,17 @@
+{
+  "name": "MWAHLI",
+  "short_name": "MWAHLI",
+  "start_url": "/home",
+  "display": "standalone",
+  "background_color": "#211219",
+  "theme_color": "#211219",
+  "description": "Start with a person. Make something, send something, or show up for them.",
+  "icons": [
+    {
+      "src": "/brand/mwahli-fav.png",
+      "sizes": "1254x1254",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}

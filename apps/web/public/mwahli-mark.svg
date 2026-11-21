@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="MWAHLI">
+<defs><linearGradient id="rose" x1="10" y1="10" x2="118" y2="118"><stop stop-color="#FFD1C7"/><stop offset=".48" stop-color="#F08A91"/><stop offset="1" stop-color="#C83E62"/></linearGradient></defs>
+<path d="M63 99C46 86 28 72 28 51c0-14 9-24 21-24 9 0 15 5 19 13 4-8 10-13 19-13 12 0 21 10 21 24 0 21-18 35-35 48" fill="none" stroke="url(#rose)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M64 94C54 82 45 68 45 54c0-13 7-24 19-31 12 7 19 18 19 31 0 14-9 28-19 40Z" fill="none" stroke="url(#rose)" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M38 78c8-10 17-15 26-15s18 5 26 15" fill="none" stroke="url(#rose)" stroke-width="6" stroke-linecap="round"/>
+</svg>

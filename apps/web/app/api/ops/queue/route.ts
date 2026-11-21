@@ -1,0 +1,1 @@
+import {auth,json} from '@/lib/http';import {opsQueue} from '@/lib/repositories';export async function GET(){const a=await auth(['ops','trust_safety','finance','support']);if('response'in a)return a.response;if(process.env.NODE_ENV==='production'&&process.env.AUTH_REQUIRE_ADMIN_MFA!=='false'&&!a.session.mfa)return json({error:'MFA required.'},403);return json(await opsQueue())}

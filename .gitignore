@@ -1,0 +1,12 @@
+node_modules
+.next
+.expo
+.env
+.env.local
+*.log
+coverage
+dist
+.DS_Store
+
+.mwahli-local-store.json
+apps/web/.mwahli-local-store.json

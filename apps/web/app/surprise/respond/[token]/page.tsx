@@ -1,0 +1,1 @@
+import {SurpriseResponse} from '@/components/surprise-response';export default async function Page({params}:{params:Promise<{token:string}>}){const {token}=await params;return <SurpriseResponse token={token}/>}

@@ -1,0 +1,29 @@
+{
+  "name": "mwahli-love-os",
+  "private": true,
+  "version": "2.0.0",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "npm run dev --workspace @mwahli/web",
+    "build": "npm run build --workspace @mwahli/web",
+    "start": "npm run start --workspace @mwahli/web",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "test": "npm run test --workspaces --if-present",
+    "preview": "node scripts/preview-local.mjs",
+    "check:env": "node scripts/check-env.mjs",
+    "migrate": "node scripts/migrate.mjs",
+    "worker": "node scripts/worker.mjs",
+    "qa": "node scripts/qa.mjs",
+    "release:check": "npm run check:env && npm run qa && npm run typecheck && npm run build",
+    "preview:static": "node preview/server.mjs",
+    "preview:production": "npm run build && npm run start --workspace @mwahli/web -- --hostname 0.0.0.0 --port 4173",
+    "release:software": "npm run qa && npm run typecheck && npm run build",
+    "preview:strict": "npm run dev --workspace @mwahli/web -- --hostname 0.0.0.0 --port 4173"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

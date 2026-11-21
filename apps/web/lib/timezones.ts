@@ -1,0 +1,6 @@
+export const timezoneOptions=[
+['UTC','UTC'],['Africa/Accra','Accra, Ghana'],['Africa/Abidjan','Abidjan, Côte d’Ivoire'],['Africa/Lagos','Lagos, Nigeria'],['Africa/Nairobi','Nairobi, Kenya'],['Africa/Johannesburg','Johannesburg, South Africa'],['Africa/Cairo','Cairo, Egypt'],['Africa/Casablanca','Casablanca, Morocco'],
+['Europe/London','London, United Kingdom'],['Europe/Paris','Paris, France'],['Europe/Berlin','Berlin, Germany'],['Europe/Rome','Rome, Italy'],['Europe/Madrid','Madrid, Spain'],['Europe/Amsterdam','Amsterdam, Netherlands'],['Europe/Stockholm','Stockholm, Sweden'],['Atlantic/Reykjavik','Reykjavík, Iceland'],
+['America/New_York','New York, United States'],['America/Chicago','Chicago, United States'],['America/Denver','Denver, United States'],['America/Los_Angeles','Los Angeles, United States'],['America/Toronto','Toronto, Canada'],['America/Vancouver','Vancouver, Canada'],['America/Mexico_City','Mexico City, Mexico'],['America/Sao_Paulo','São Paulo, Brazil'],
+['Asia/Dubai','Dubai, UAE'],['Asia/Kolkata','Mumbai / Delhi, India'],['Asia/Singapore','Singapore'],['Asia/Tokyo','Tokyo, Japan'],['Asia/Seoul','Seoul, South Korea'],['Asia/Shanghai','Shanghai, China'],['Asia/Hong_Kong','Hong Kong'],['Australia/Sydney','Sydney, Australia'],['Pacific/Auckland','Auckland, New Zealand']
+] as const;

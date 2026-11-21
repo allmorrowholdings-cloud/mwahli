@@ -1,0 +1,2 @@
+import {Suspense} from 'react';
+import {ModuleFrame} from '@/components/module-frame';import {MomentsManager} from '@/components/moments-manager';export default function Page(){return <ModuleFrame eyebrow="Moment graph" title="Own moments, not holidays." description="Birthdays matter. So do exams, rough weeks, launches, grief, reunions and days when no occasion is needed." trust="No auto-sent intimacy"><Suspense fallback={<p>Loading moments…</p>}><MomentsManager/></Suspense></ModuleFrame>}
