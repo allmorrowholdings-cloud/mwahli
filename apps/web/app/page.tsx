@@ -3,9 +3,9 @@ import {getSession} from '@/lib/session';
 import '../public/brand/homepage.css';
 const studioActions = [
   ['Write a Letter', '/studio/editor?tool=love-letter'],
-  ['AI Muse', '/muse'],
+  ['◉ Memory Jar', '/studio/editor?tool=memory-jar'],
   ['Record Voice', '/studio/editor?tool=voice-capsule'],
-  ['Video Message', '/studio/editor?tool=mini-cinema'],
+  ['✎ Art4U', '/studio/editor?tool=art4u'],
 ] as const;
 const featureCards=[
   ['Keeps','Private memories. Beautifully kept.','/brand/mwahli-card-keeps.webp','/brand/icon-keeps.svg'],
