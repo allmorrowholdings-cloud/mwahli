@@ -57,7 +57,6 @@ export function MemoryJarExperience({data,compact=false}:{data:MemoryJarData;com
     </div>}
     {!!revealed.length&&<div className="mj-reveals">
       {revealed.map(m=><article className="brain-card" key={m.key}>
-        <img className="brain-card-art" src="/studio/memory/brain-card.webp" alt=""/>
         <div className="brain-card-inner">
           {m.text&&<p>{m.text}</p>}
           {m.attachments?.map((a,i)=><figure className="brain-media" key={`${a.name}-${i}`}>

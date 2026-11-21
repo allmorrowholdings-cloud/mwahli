@@ -168,3 +168,7 @@ button{min-height:44px}
 .brain-card .brain-media{width:100%;clip-path:none;border-radius:12px;overflow:visible}
 .brain-card .brain-media img,.brain-card .brain-media video,.memory-attachment-grid img,.memory-attachment-grid video{width:100%;height:auto;max-height:none;object-fit:contain}
 .studio-editor-layout select{width:100%}
+
+.mj-reveals .brain-card{min-height:0;border-radius:20px;border:1px solid #c797784a;background:#fffaf5;color:#3c1a28;box-shadow:0 12px 32px #3c1a2812}
+.mj-reveals .brain-card-inner{min-height:clamp(150px,26vw,220px);padding:clamp(18px,5vw,44px);white-space:pre-wrap}
+.mj-reveals .brain-card p{margin:0;max-width:52ch}

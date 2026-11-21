@@ -3,7 +3,6 @@ export const studioTools:StudioTool[]=[
 {slug:'memory-jar',name:'Memory Jar',description:'Choose a colour or animal to reveal a memory.',pro:false,icon:'◉'},
 {slug:'love-letter',name:'Love Letter / Poem',description:'An envelope, your words, a poem and optional voice.',pro:false,icon:'✉'},
 {slug:'art4u',name:'Art4U',description:'Funny or meaningful art made for one person.',pro:false,icon:'✎'},
-{slug:'mini-cinema',name:'Mini Cinema',description:'Turn photos and clips into a private trailer.',pro:false,icon:'▶'},
 {slug:'photo-puzzle',name:'Photo Puzzle',description:'Blur, guess, reveal or rebuild a shared moment.',pro:false,icon:'◇'},
 {slug:'love-cards',name:'Love Cards',description:'One thing I love. One ridiculous memory. Open when you are sad.',pro:true,icon:'♡'},
 {slug:'our-timeline',name:'Our Timeline',description:'Scroll the story you choose to keep.',pro:true,icon:'↝'},

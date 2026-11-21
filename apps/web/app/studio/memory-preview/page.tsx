@@ -1,6 +1,7 @@
 'use client';
 
 import {useEffect,useState} from 'react';
+import {decodeMemoryLink} from '@/lib/memory-link';
 import {z} from 'zod';
 import {MemoryJarExperience,type MemoryJarData} from '@/components/memory-jar-experience';
 
@@ -22,13 +23,16 @@ export default function MemoryPreviewPage() {
   const [data,setData]=useState<MemoryJarData|null>(null);
   const [status,setStatus]=useState('Opening your Memory Jar…');
   useEffect(()=>{
-    try {
-      const fragment=window.location.hash.slice(1);
-      if(fragment.length>16000)throw new Error();
-      setData(jar.parse(JSON.parse(decodeURIComponent(fragment))));
-    } catch {
-      setStatus('This Memory Jar link is incomplete or invalid.');
+    async function openJar() {
+      try {
+        const fragment=window.location.hash.slice(1);
+        if(fragment.length>16000)throw new Error();
+        setData(jar.parse(JSON.parse(await decodeMemoryLink(fragment))));
+      } catch {
+        setStatus('This Memory Jar link is incomplete or invalid.');
+      }
     }
+    void openJar();
   },[]);
   return <main className="mx-auto max-w-4xl px-4 py-8">{data?<MemoryJarExperience data={data}/>:<p role="status">{status}</p>}</main>;
 }

@@ -2,6 +2,7 @@
 import Link from 'next/link';
 import {useMemo,useRef,useState} from 'react';
 import {useSearchParams} from 'next/navigation';
+import {encodeMemoryLink} from '@/lib/memory-link';
 import {studioTools} from '@/lib/studio-tools';
 import {api,buttonClass,inputClass,softButton} from './client-kit';
 import {LetterPreview, renderLetter} from './letter-preview';
@@ -69,7 +70,9 @@ export function StudioToolEditor({slug, signedIn}:{slug:string; signedIn:boolean
       return;
     }
     const url=new URL('/studio/memory-preview',window.location.origin);
-    url.hash=encodeURIComponent(JSON.stringify(memoryData));
+    const json=JSON.stringify(memoryData);
+    if(json.length>16000){setStatus('Shorten the written memories to fit in a shareable link.');return}
+    try{url.hash=await encodeMemoryLink(json)}catch{url.hash=encodeURIComponent(json)}
     if(url.href.length>16000){setStatus('Shorten the written memories to fit in a shareable link.');return}
     setShareUrl(url.href);
     try{await navigator.clipboard.writeText(url.href);setStatus('Link copied. Anyone with the link can open it.')}
