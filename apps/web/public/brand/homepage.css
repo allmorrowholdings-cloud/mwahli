@@ -140,3 +140,8 @@ body > header.nav {
 @media (prefers-reduced-motion: reduce) {
   .home-studio-stack a { transition: none; }
 }
+
+@media(max-width:600px){
+  .home-studio .home-studio-stack{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;width:100%;overflow:visible;padding-inline:0}
+  .home-studio .home-studio-stack a{min-width:0;margin:0;white-space:normal;text-align:center;justify-content:center;transform:none}
+}

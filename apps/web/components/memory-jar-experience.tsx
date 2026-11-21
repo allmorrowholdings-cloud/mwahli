@@ -29,23 +29,23 @@ export function MemoryJarExperience({data,compact=false}:{data:MemoryJarData;com
     setCount(0);setPhase('choices');
   }
   function reveal(key:string){
-    if(chosen.includes(key)||chosen.length>=data.revealCount)return;
+    if(active||phase!=='choices'||chosen.includes(key)||chosen.length>=data.revealCount)return;
     setActive(key);
     if(data.mode==='animals') setBurst(key);
     window.setTimeout(()=>{
-      const next=[...chosen,key];setChosen(next);
+      const next=[...chosen,key];setChosen(next);setActive(null);
       if(data.mode==='animals') setBurst(null);
-      if(next.length>=data.revealCount)window.setTimeout(()=>setPhase('done'),650);
+      if(next.length>=data.revealCount)setPhase('done');
     },data.mode==='colors'?420:300);
   }
   const revealed=memories.filter(m=>chosen.includes(m.key));
   return <section className={`mj-stage ${compact?'mj-stage-compact':''}`}>
     <div className="mj-ambient" aria-hidden="true"/>
-    <div className="mj-title"><span>MWAHLI</span><b>Memory Jar{data.recipientName?` for ${data.recipientName}`:''}</b><small>{phase==='jar'?'Tap the jar to begin.':phase==='countdown'?'Ready…':phase==='choices'?`Choose ${Math.max(0,data.revealCount-chosen.length)} to reveal a memory.`:'Your memories, revealed.'}</small></div>
-    <button type="button" className={`mj-jar-button ${phase==='countdown'?'is-shaking':''} ${phase==='done'?'is-empty':''}`} onClick={launch} aria-label="Open the Memory Jar">
+    <div className="mj-title"><span>MWAHLI</span><b>Memory Jar{data.recipientName?` for ${data.recipientName}`:''}</b><strong aria-live="polite">{phase==='jar'?'Tap the jar to begin.':phase==='countdown'?'Ready…':phase==='choices'?(data.revealCount-chosen.length===2?'You may choose two memories.':'You may choose one memory.'):'Your memories, revealed.'}</strong></div>
+    {(phase==='jar'||phase==='countdown')&&<button type="button" className={`mj-jar-button ${phase==='countdown'?'is-shaking':''}`} onClick={launch} aria-label="Open the Memory Jar">
       <img src={data.mode==='animals'?'/studio/jars/animal-jar.webp':'/studio/jars/color-jar.webp'} alt="MWAHLI Memory Jar"/>
       {phase==='countdown'&&<span className="mj-count">{count}</span>}
-    </button>
+    </button>}
     {(phase==='choices'||phase==='done')&&<div className={`mj-choice-line ${phase==='done'?'is-finished':''}`}>
       {memories.map((m,i)=>{
         const isChosen=chosen.includes(m.key),disabled=phase==='done'&&!isChosen;
@@ -59,7 +59,6 @@ export function MemoryJarExperience({data,compact=false}:{data:MemoryJarData;com
       {revealed.map(m=><article className="brain-card" key={m.key}>
         <img className="brain-card-art" src="/studio/memory/brain-card.webp" alt=""/>
         <div className="brain-card-inner">
-          <span className="brain-kicker">A memory from someone who loves you</span>
           {m.text&&<p>{m.text}</p>}
           {m.attachments?.map((a,i)=><figure className="brain-media" key={`${a.name}-${i}`}>
             {a.kind==='video'?<video controls playsInline preload="metadata" src={a.dataUrl}/>:<img src={a.dataUrl} alt={a.caption||a.name}/>} 

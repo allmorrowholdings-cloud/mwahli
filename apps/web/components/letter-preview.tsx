@@ -3,7 +3,7 @@ import {useEffect,useRef,useState} from 'react';
 const stationery = ['romantic-classic','soft-morning','midnight-letter','joy-confetti','quiet-comfort'];
 const ink = ['#6f173a','#6f173a','#f4d98f','#6f173a','#425346'];
 
-export async function renderLetter(canvas: HTMLCanvasElement, template: number, text: string) {
+export async function renderLetter(canvas: HTMLCanvasElement, template: number, text: string, signOff: string) {
   const paper = new Image();
   paper.src = `/studio/letters/${stationery[template]}.webp`;
   await paper.decode();
@@ -52,22 +52,21 @@ export async function renderLetter(canvas: HTMLCanvasElement, template: number, 
 
   const lineHeight = fontSize * 1.45;
   lines.forEach((line,index) => ctx.fillText(line, width / 2, height / 2 + (index - (lines.length - 1) / 2) * lineHeight, maxWidth));
-  ctx.font = `${Math.round(width * .015)}px sans-serif`;
-  ctx.globalAlpha = .65;
-  ctx.fillText('MWAHLI · Free preview watermark', width / 2, height * .82);
+  ctx.font = `${Math.min(fontSize, Math.round(width * .028))}px Georgia, serif`;
+  signOff.split('\n').forEach((line,index)=>ctx.fillText(line,width/2,height*.82+index*width*.039,maxWidth));
 }
 
-export function LetterPreview({template,text}:{template:number;text:string}) {
+export function LetterPreview({template,text,signOff}:{template:number;text:string;signOff:string}) {
   const canvas = useRef<HTMLCanvasElement>(null);
   const [status, setStatus] = useState('Preparing your preview…');
   useEffect(() => {
     if (!canvas.current) return;
     let active = true;
-    renderLetter(canvas.current, template, text).then(
+    renderLetter(canvas.current, template, text, signOff).then(
       () => { if (active) setStatus(''); },
       () => { if (active) setStatus('Could not load the chosen stationery.'); }
     );
     return () => { active = false; };
-  }, [template, text]);
-  return <>{status && <p role="status">{status}</p>}<canvas ref={canvas} hidden={Boolean(status)} className="letter-preview-canvas" role="img" aria-label={text}/></>;
+  }, [template, text, signOff]);
+  return <>{status && <p role="status">{status}</p>}<canvas ref={canvas} hidden={Boolean(status)} className="letter-preview-canvas" role="img" aria-label={[text,signOff].filter(Boolean).join(' ')}/></>;
 }

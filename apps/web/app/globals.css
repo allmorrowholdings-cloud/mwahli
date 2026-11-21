@@ -156,3 +156,15 @@ button{min-height:44px}
   .studio-tools-drawer .studio-side-link{min-width:0;border:0}
 }
 @media(min-width:901px){.studio-tools-drawer[open]::backdrop{background:none}}
+
+.mj-title strong{display:block;margin-top:.4rem;font-size:clamp(1.05rem,3vw,1.4rem);font-weight:800}
+.mj-stage .mj-jar-button{width:min(100%,480px)}
+.mj-stage .mj-jar-button img{max-height:460px}
+.brain-card-inner{min-height:inherit;display:flex;flex-direction:column;justify-content:safe center;align-items:center;padding:clamp(2.5rem,13%,4.5rem) 17%;overflow-wrap:anywhere}
+
+.mj-stage .mj-choice-line{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:clamp(8px,2vw,22px);margin:clamp(24px,7vw,68px) auto;max-width:680px}
+.mj-stage .mj-choice{width:clamp(106px,21vw,148px);max-width:45%}
+.mj-stage .mj-choice>img:not(.mj-burst-fx),.mj-stage .mj-heart-ball{width:100%;height:clamp(90px,17vw,135px);object-fit:contain}
+.brain-card .brain-media{width:100%;clip-path:none;border-radius:12px;overflow:visible}
+.brain-card .brain-media img,.brain-card .brain-media video,.memory-attachment-grid img,.memory-attachment-grid video{width:100%;height:auto;max-height:none;object-fit:contain}
+.studio-editor-layout select{width:100%}
