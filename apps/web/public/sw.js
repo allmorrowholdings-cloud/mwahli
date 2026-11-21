@@ -1,5 +1,5 @@
-const CACHE='mwahli-public-assets-v3';
-const PUBLIC_SHELL=['/','/brand/mwahli-logo-exact-transparent.svg','/brand/mwahli-fav.png','/manifest.webmanifest'];
+const CACHE='mwahli-public-assets-v4';
+const PUBLIC_SHELL=['/brand/mwahli-logo-exact-transparent.webp','/brand/mwahli-fav-512.png','/manifest.webmanifest'];
 self.addEventListener('install',event=>event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(PUBLIC_SHELL)).then(()=>self.skipWaiting())));
 self.addEventListener('activate',event=>event.waitUntil((async()=>{for(const key of await caches.keys())if(key!==CACHE)await caches.delete(key);await self.clients.claim()})()));
 self.addEventListener('fetch',event=>{
@@ -17,7 +17,6 @@ self.addEventListener('fetch',event=>{
     }catch{
       const cached=await caches.match(request);
       if(cached)return cached;
-      if(request.mode==='navigate')return (await caches.match('/'))||Response.error();
       return Response.error();
     }
   })());

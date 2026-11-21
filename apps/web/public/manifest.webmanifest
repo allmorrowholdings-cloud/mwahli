@@ -8,8 +8,8 @@
   "description": "Start with a person. Make something, send something, or show up for them.",
   "icons": [
     {
-      "src": "/brand/mwahli-fav.png",
-      "sizes": "1254x1254",
+      "src": "/brand/mwahli-fav-512.png",
+      "sizes": "512x512",
       "type": "image/png",
       "purpose": "any"
     }

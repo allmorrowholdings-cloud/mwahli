@@ -69,6 +69,6 @@ export function MemoryJarExperience({data,compact=false}:{data:MemoryJarData;com
         </div>
       </article>)}
     </div>}
-    {data.watermark!==false&&<div className="mj-watermark"><img src="/brand/mwahli-logo-exact-transparent.svg" alt="MWAHLI"/></div>}
+    {data.watermark!==false&&<div className="mj-watermark"><img src="/brand/mwahli-logo-exact-transparent.webp" alt="MWAHLI"/></div>}
   </section>
 }
