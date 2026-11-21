@@ -21,7 +21,7 @@ const signedIn = Boolean(await getSession({allowLocalPreview: false}));
 return <main className="mwahli-cinematic">
 <header className="mwahli-public-nav"><Brand href={signedIn ? "/home" : "/"}/><div className="nav-actions">{!signedIn && <Link href="/login">Sign in</Link>}<Link className="send-love" href="/studio">Send Love ♥</Link></div></header>
 <section className="cinematic-hero mwahli-textured">
-  <div className="hero-copy-new"><h1>Love,<br/><em>made</em><br/>intentional.</h1><p>Make something. Send something.<br/>Show up for them.</p><div className="hero-actions"><Link href="/studio" className="primary-love">Start with a person ♥</Link></div><div className="hero-proof"><span>Private by design</span><span>Secure & encrypted</span><span>Made with care</span></div></div>
+  <div className="hero-copy-new"><h1>Love,<br/><em>made</em><br/>intentional.</h1><div className="hero-actions"><Link href="/studio" className="primary-love">Start with a person ♥</Link></div><div className="hero-proof"><span>Private by design</span><span>Secure & encrypted</span><span>Made with care</span></div></div>
   <img className="home-hero-art" fetchPriority="high" src="/brand/mwahli-envelope-hero.webp" alt="Cream envelope wrapped in a burgundy ribbon with a jeweled heart"/>
 </section>
 <section className="home-studio" aria-label="MWAHLI Studio">
