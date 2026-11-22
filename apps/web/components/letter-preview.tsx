@@ -1,6 +1,6 @@
 import {useEffect,useRef,useState} from 'react';
 
-const stationery = ['romantic-classic','soft-morning','midnight-letter','joy-confetti','quiet-comfort'];
+export const stationery = ['romantic-classic','soft-morning','midnight-letter','joy-confetti','quiet-comfort'];
 const ink = ['#6f173a','#6f173a','#f4d98f','#6f173a','#425346'];
 
 export async function renderLetter(canvas: HTMLCanvasElement, template: number, text: string, signOff: string) {

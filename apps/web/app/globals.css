@@ -172,3 +172,7 @@ button{min-height:44px}
 .mj-reveals .brain-card{min-height:0;border-radius:20px;border:1px solid #c797784a;background:#fffaf5;color:#3c1a28;box-shadow:0 12px 32px #3c1a2812}
 .mj-reveals .brain-card-inner{min-height:clamp(150px,26vw,220px);padding:clamp(18px,5vw,44px);white-space:pre-wrap}
 .mj-reveals .brain-card p{margin:0;max-width:52ch}
+
+.letter-sample{min-width:0;border-radius:14px;border:2px solid transparent;padding:4px}
+.letter-sample img{display:block;width:100%;height:auto;border-radius:10px}
+.letter-sample[aria-pressed=true],.letter-sample:focus-visible{border-color:#9a284f}
