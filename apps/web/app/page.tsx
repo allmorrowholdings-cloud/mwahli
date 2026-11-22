@@ -4,7 +4,6 @@ import '../public/brand/homepage.css';
 const studioActions = [
   ['Write a Letter', '/studio/editor?tool=love-letter'],
   ['Share a Memory', '/studio/editor?tool=memory-jar'],
-  ['Record Voice', '/studio/editor?tool=voice-capsule'],
   ['Draw & Share', '/studio/editor?tool=art4u'],
 ] as const;
 const featureCards=[

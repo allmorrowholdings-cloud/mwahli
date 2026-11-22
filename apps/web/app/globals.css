@@ -157,7 +157,7 @@ button{min-height:44px}
 }
 @media(min-width:901px){.studio-tools-drawer[open]::backdrop{background:none}}
 
-.mj-title strong{display:block;margin-top:.4rem;font-size:clamp(1.05rem,3vw,1.4rem);font-weight:800}
+.mj-title .mj-instructions{display:block;margin-top:.4rem;font-size:clamp(1.05rem,3vw,1.4rem);font-weight:800}
 .mj-stage .mj-jar-button{width:min(100%,480px)}
 .mj-stage .mj-jar-button img{max-height:460px}
 .brain-card-inner{min-height:inherit;display:flex;flex-direction:column;justify-content:safe center;align-items:center;padding:clamp(2.5rem,13%,4.5rem) 17%;overflow-wrap:anywhere}

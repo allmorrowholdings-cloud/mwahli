@@ -3,5 +3,5 @@ import {getSession} from '@/lib/session';
 
 export default async function Page() {
   const signedIn = Boolean(await getSession({allowLocalPreview: false}));
-  return <AppShell guest={!signedIn}><PageWrap><StudioBuilder signedIn={signedIn}/></PageWrap></AppShell>;
+  return <AppShell guest={!signedIn}><PageWrap><StudioBuilder/></PageWrap></AppShell>;
 }

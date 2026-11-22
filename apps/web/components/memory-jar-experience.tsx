@@ -7,12 +7,13 @@ export type MemoryJarData={mode:'colors'|'animals';revealCount:number;memories:M
 
 const animalAsset=(animal?:string,gender?:string)=>{
   const a=(animal||'').toLowerCase();
+  if (!['bunny','cat','dog','fox','giraffe','koala','lion','panda'].includes(a)) return '';
   const g=gender==='male'?'male':'female';
   if(a==='giraffe'&&g==='male') return '/studio/animals/male-giraffee.webp';
   return `/studio/animals/${g}-${a}.webp`;
 };
 
-const heartAsset=(label?:string)=>{const k=(label||'').toLowerCase();return ['rose','honey','sage','blush','wine','sky','tangerine'].includes(k)?`/studio/hearts/${k}-ball.webp`:''};
+const heartAsset=(label?:string)=>{const k=(label||'').toLowerCase();return ['honey','blush','tangerine'].includes(k)?`/studio/hearts/${k}-ball.webp`:''};
 
 export function MemoryJarExperience({data,compact=false}:{data:MemoryJarData;compact?:boolean}){
   const [phase,setPhase]=useState<'jar'|'countdown'|'choices'|'done'>('jar');
@@ -41,16 +42,17 @@ export function MemoryJarExperience({data,compact=false}:{data:MemoryJarData;com
   const revealed=memories.filter(m=>chosen.includes(m.key));
   return <section className={`mj-stage ${compact?'mj-stage-compact':''}`}>
     <div className="mj-ambient" aria-hidden="true"/>
-    <div className="mj-title"><span>MWAHLI</span><b>Memory Jar{data.recipientName?` for ${data.recipientName}`:''}</b><strong aria-live="polite">{phase==='jar'?'Tap the jar to begin.':phase==='countdown'?'Ready…':phase==='choices'?(data.revealCount-chosen.length===2?'You may choose two memories.':'You may choose one memory.'):'Your memories, revealed.'}</strong></div>
+    <div className="mj-title"><h2 className="mj-instructions" aria-live="polite">{phase==='jar'?'Tap the jar to begin.':phase==='countdown'?'Ready…':phase==='choices'?(data.revealCount-chosen.length===2?'You may choose two memories.':'You may choose one memory.'):'Your memories, revealed.'}</h2></div>
     {(phase==='jar'||phase==='countdown')&&<button type="button" className={`mj-jar-button ${phase==='countdown'?'is-shaking':''}`} onClick={launch} aria-label="Open the Memory Jar">
       <img src={data.mode==='animals'?'/studio/jars/animal-jar.webp':'/studio/jars/color-jar.webp'} alt="MWAHLI Memory Jar"/>
       {phase==='countdown'&&<span className="mj-count">{count}</span>}
     </button>}
     {(phase==='choices'||phase==='done')&&<div className={`mj-choice-line ${phase==='done'?'is-finished':''}`}>
       {memories.map((m,i)=>{
+        const animalImage=data.mode==='animals'?animalAsset(m.animal,m.gender):'';
         const isChosen=chosen.includes(m.key),disabled=phase==='done'&&!isChosen;
         return <button key={m.key} type="button" disabled={disabled||isChosen} onClick={()=>reveal(m.key)} className={`mj-choice mj-pop-${i%4} ${isChosen?'is-chosen':''} ${active===m.key&&!isChosen?'is-opening':''}`} aria-label={`Reveal ${m.label}`}>
-          {data.mode==='animals'?<><img src={animalAsset(m.animal,m.gender)} alt={`${m.gender||'female'} ${m.animal||m.label}`}/>{burst===m.key&&<img className="mj-burst-fx" src="/studio/effects/balloon-burst.webp" alt=""/>}</>:heartAsset(m.label)?<img className="mj-heart-ball-img" src={heartAsset(m.label)} alt={`${m.label} heart ball`}/>:<span className="mj-heart-ball" style={{'--heart-color':m.color||'#B72A57'} as React.CSSProperties}>♥</span>}
+          {data.mode==='animals'?<>{animalImage?<img src={animalImage} alt=""/>:<span className="mj-heart-ball" aria-hidden="true">♥</span>}{burst===m.key&&<img className="mj-burst-fx" src="/studio/effects/balloon-burst.webp" alt=""/>}</>:heartAsset(m.label)?<img className="mj-heart-ball-img" src={heartAsset(m.label)} alt={`${m.label} heart ball`}/>:<span className="mj-heart-ball" style={{'--heart-color':m.color||'#B72A57'} as React.CSSProperties}>♥</span>}
           <b>{m.label}</b>
         </button>
       })}
