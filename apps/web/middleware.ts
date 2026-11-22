@@ -1,4 +1,4 @@
 import {NextResponse,type NextRequest} from 'next/server';
-const privatePrefixes=['/home','/people','/moments','/gifts','/local','/together','/creators','/care','/keeps','/capsule','/id','/surprise','/exchange','/receipt','/loop','/work','/creator','/ops'];
+const privatePrefixes=['/home','/moments','/gifts','/local','/creators','/capsule','/id','/surprise','/exchange','/receipt','/loop','/work','/creator','/ops'];
 export function middleware(req:NextRequest){const privateRoute=privatePrefixes.some(p=>req.nextUrl.pathname===p||req.nextUrl.pathname.startsWith(`${p}/`));const localPreview=process.env.NODE_ENV!=='production'&&process.env.MWAHLI_LOCAL_STANDALONE==='true';if(privateRoute&&!localPreview&&!req.cookies.get('mwahli_session')){const url=req.nextUrl.clone();url.pathname='/login';url.searchParams.set('next',req.nextUrl.pathname);return NextResponse.redirect(url)}return NextResponse.next()}
 export const config={matcher:['/((?!_next/static|_next/image|favicon.ico|manifest.webmanifest|sw.js|mwahli-mark.svg).*)']};

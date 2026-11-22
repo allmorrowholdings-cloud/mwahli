@@ -7,11 +7,8 @@ const studioActions = [
   ['Draw & Share', '/studio/editor?tool=art4u'],
 ] as const;
 const featureCards=[
-  ['Keeps','Private memories. Beautifully kept.','/brand/mwahli-card-keeps.webp'],
   ['Capsule','Send a moment to the future.','/brand/mwahli-card-capsule.webp'],
-  ['Together','Love is better, together.','/brand/mwahli-card-together.webp'],
   ['Creators','Commission something unique.','/brand/mwahli-card-creators.webp'],
-  ['Care','Show up beyond gifts.','/brand/mwahli-card-care.webp'],
   ['Gifts','Thoughtfully curated.','/brand/mwahli-card-gifts.webp']
 ];
 export default async function Landing(){

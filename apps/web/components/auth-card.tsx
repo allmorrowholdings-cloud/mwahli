@@ -1,8 +1,7 @@
 'use client';
 
-import {FormEvent,useMemo,useState} from 'react';
+import {FormEvent,useState} from 'react';
 import Link from 'next/link';
-import {Brand} from './brand';
 import {getPasskey} from '@/lib/webauthn-client';
 
 type MfaState={kind:'verify'|'enroll';challenge:string;secret?:string;otpauth?:string};
@@ -14,7 +13,6 @@ export function AuthCard({mode}:{mode:'login'|'signup'|'forgot'}){
   const [mfa,setMfa]=useState<MfaState|null>(null);
   const [code,setCode]=useState('');
 
-  const art=useMemo(()=>mode==='signup'?'/brand/mwahli-gifts.jpg':'/brand/mwahli-hero.jpg',[mode]);
 
   async function submit(e:FormEvent<HTMLFormElement>){
     e.preventDefault();setBusy(true);setMsg('');
@@ -59,34 +57,20 @@ export function AuthCard({mode}:{mode:'login'|'signup'|'forgot'}){
 
   const title=mfa
     ? (mfa.kind==='enroll'?'Set up MFA before entering.':'Enter your verification code.')
-    : mode==='login'?'Sign in':mode==='signup'?'Make love more intentional.':'Find your way back in.';
-  const eyebrow=mfa?'Protected access':mode==='login'?'RETURN TO MWAHLI':mode==='signup'?'BEGIN WITH SOMEONE': 'ACCOUNT RECOVERY';
+    : mode==='login'?'Sign in':mode==='signup'?'Create an account':'Reset your password';
 
-  return <main className={mode==='login' ? 'mwahli-auth-shell mwahli-auth-login' : 'mwahli-auth-shell'}>
-    {mode!=='login' && <div className="mwahli-auth-grain" aria-hidden="true"/>}
+  return <main className="mwahli-auth-shell mwahli-auth-login">
     <header className="mwahli-auth-nav">
-      {mode!=='login' && <Brand href="/"/>}
       <Link className="mwahli-auth-home" href="/">← Back to MWAHLI</Link>
     </header>
 
     <section className="mwahli-auth-stage">
-      {mode!=='login' && <div className="mwahli-auth-visual">
-        <img src={art} alt="A thoughtful MWAHLI moment"/>
-        <div className="mwahli-auth-visual-shade"/>
-        <img className="mwahli-auth-seal" src="/brand/card-love-seal.svg" alt=""/>
-        <div className="mwahli-auth-story">
-          <h2>{mode==='signup'?'Start with a person.\nNot a catalogue.':'Come back to the people\nthat matter.'}</h2>
-          <p>{mode==='signup'?'Create, remember, gift and show up with more intention.':'Your people, moments, keeps and thoughtful plans stay close — and private.'}</p>
-          <div className="mwahli-auth-proof"><b>Private by design</b><b>Made with care</b><b>Yours to control</b></div>
-        </div>
-      </div>}
 
       <div className="mwahli-auth-panel">
         <div className="mwahli-auth-panel-inner">
-          {mode!=='login' && <div className="mwahli-auth-heart" aria-hidden="true">♥</div>}
-          {(mode!=='login' || mfa) && <p className="mwahli-auth-eyebrow">{eyebrow}</p>}
+
           <h1>{title}</h1>
-          {!mfa&&mode!=='login'&&<p className="mwahli-auth-lede">{mode==='forgot'?'Enter your email and we’ll send a private recovery link.':"A private place for the people, memories and gestures you don't want to treat casually."}</p>}
+          {!mfa&&mode==='forgot'&&<p className="mwahli-auth-lede">Enter your email for a recovery link.</p>}
 
           {mfa ? <>
             {mfa.kind==='enroll'&&<><p className="mwahli-auth-lede">Add this secret to your authenticator app, then enter the current six-digit code.</p><code className="mwahli-auth-code">{mfa.secret}</code></>}
@@ -111,12 +95,12 @@ export function AuthCard({mode}:{mode:'login'|'signup'|'forgot'}){
             </form>
 
             <div className="mwahli-auth-switch">
-              {mode==='login'?<><span>New to MWAHLI?</span><Link href="/signup">Create an account →</Link></>:mode==='signup'?<><span>Already have your place here?</span><Link href="/login">Sign in →</Link></>:<Link href="/login">← Back to sign in</Link>}
+              {mode==='login'?<><span>New to MWAHLI?</span><Link href="/signup">Create an account →</Link></>:mode==='signup'?<><span>Already have an account?</span><Link href="/login">Sign in →</Link></>:<Link href="/login">← Back to sign in</Link>}
             </div>
             {mode==='login'&&<Link className="mwahli-auth-forgot" href="/forgot-password">Forgot your password?</Link>}
           </>}
 
-          <p className="mwahli-auth-legal">By continuing, you agree to the Terms and acknowledge the Privacy Policy. {mode!=='login' && 'Recipient safety, consent and account controls are enforced server-side.'}</p>
+          <p className="mwahli-auth-legal">By continuing, you agree to the Terms and acknowledge the Privacy Policy.</p>
         </div>
       </div>
     </section>

@@ -2,7 +2,7 @@ export type ModuleKey = 'people'|'studio'|'muse'|'moments'|'id'|'surprise'|'gift
 
 export const modules: Record<ModuleKey,{title:string;kicker:string;description:string;cta:string}> = {
   people:{title:'People',kicker:'Relationship graph',description:'Keep the people, moments and traditions you choose to remember. Private by default.',cta:'Add someone'},
-  studio:{title:'Studio',kicker:'Interactive love builder',description:'Make them something only you could give. Build private rooms, jars, letters, cards and reveals.',cta:'Start making'},
+  studio:{title:'Studio',kicker:'Interactive love builder',description:'Make them something only you could give. Create memory jars, letters, poems and artwork.',cta:'Start making'},
   muse:{title:'Muse',kicker:'AI love concierge',description:'Tell me about them and what is happening. I will suggest digital, local and care options without pretending to be you.',cta:'Tell Muse'},
   moments:{title:'Moments',kicker:'Moment graph',description:'Birthdays matter. So do rough weeks, exams, reunions, grief, promotions and no-occasion-at-all days.',cta:'Add a moment'},
   id:{title:'Gift ID',kicker:'Preference passport',description:'Keep the surprise. Get the details right. Share only the preference a transaction actually needs.',cta:'Set preferences'},
@@ -22,7 +22,4 @@ export const modules: Record<ModuleKey,{title:string;kicker:string;description:s
 export const studioBlocks = [
   ['Memory Jar','Choose a colour to reveal a memory.'],['Love Letter','An envelope, your words and optional voice.'],
   ['Art4U','Funny or meaningful art made for one person.'],['Special Poem','Start with your own line. Get help only where you want it.'],
-  ['Love Cards','One thing I love. One ridiculous memory. Open when you are sad.'],
-  ['Open When…','Private envelopes unlocked by date or moment.'],
-  ['Story Path','Choose-what-happened-next stories and inside jokes.']
 ] as const;

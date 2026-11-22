@@ -66,11 +66,6 @@ body > header.nav {
   margin-inline: auto;
 }
 
-.emotion-photo img[src$="mwahli-card-together.webp"],
-.card-photo img[src$="mwahli-card-together.webp"] {
-  object-fit: contain;
-}
-
 .home-studio {
   max-width: 1240px;
   margin: 72px auto 0;

@@ -5,10 +5,10 @@ import {Brand} from './brand';
 import {ThemeToggle} from './theme-toggle';
 import {Icon} from './icons';
 
-const nav=[['/home','Home','home'],['/people','People','people'],['/studio','Studio','spark'],['/gifts','Gifts','gift'],['/keeps','Keeps','archive']] as const;
+const nav=[['/home','Home','home'],['/studio','Studio','spark'],['/gifts','Gifts','gift']] as const;
 const exploreGroups=[
-  {label:'Create & celebrate',items:[['/muse','Ask Muse','Thoughtful ideas from your context'],['/together','Together','Create with family and friends'],['/creators','Creators','Commission a human-made piece'],['/capsule','Capsule','Schedule something for later']]},
-  {label:'Send & support',items:[['/local','Local fulfilment','Make it happen near them'],['/care','Care','Meals, rides, errands and check-ins'],['/surprise','Surprise','Ask for a detail without spoiling it']]},
+  {label:'Create & celebrate',items:[['/creators','Creators','Commission a human-made piece'],['/capsule','Capsule','Schedule something for later']]},
+  {label:'Send & support',items:[['/local','Local fulfilment','Make it happen near them'],['/surprise','Surprise','Ask for a detail without spoiling it']]},
   {label:'Recipient tools',items:[['/id','Gift ID','Preferences with selective sharing'],['/exchange','Exchange','Change a gift quietly'],['/receipt','Gift receipt','Private service and repair'],['/loop','Loop','Keep, repair, donate or regift']]}
 ] as const;
 const accountItems=[['/orders','Orders','Purchases and delivery'],['/settings','Settings','Privacy, identity and notifications']] as const;
@@ -33,7 +33,6 @@ export function AppShell({children, guest = false}:{children:React.ReactNode; gu
         <Brand/>
         <nav className="hidden items-center gap-1 lg:flex">{nav.map(([href,label,icon])=><Link key={href} href={href} className={`inline-flex min-h-11 items-center gap-2 rounded-full px-4 text-sm font-medium transition ${path===href?'bg-wine text-cream':'text-cream/65 hover:bg-white/7 hover:text-cream'}`}><Icon name={icon}/>{label}</Link>)}</nav>
         <div className="flex items-center gap-2">
-          <Link href="/muse" className="hidden rounded-full bg-honey-light px-4 py-3 text-sm font-semibold text-wine sm:inline-flex">Ask Muse</Link>
           <details className="group relative">
             <summary className="grid h-11 w-11 cursor-pointer list-none place-items-center rounded-full border border-white/10 bg-white/5 text-cream" aria-label="Explore MWAHLI"><span className="text-lg leading-none">•••</span></summary>
             <div className="absolute right-0 mt-3 w-[min(92vw,26rem)] rounded-[1.5rem] border border-wine/10 bg-cream p-3 shadow-soft dark:border-white/10 dark:bg-night">

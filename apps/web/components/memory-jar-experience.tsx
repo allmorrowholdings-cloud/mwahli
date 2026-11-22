@@ -20,7 +20,6 @@ export function MemoryJarExperience({data,compact=false}:{data:MemoryJarData;com
   const [count,setCount]=useState(0);
   const [chosen,setChosen]=useState<string[]>([]);
   const [active,setActive]=useState<string|null>(null);
-  const [burst,setBurst]=useState<string|null>(null);
   const memories=useMemo(()=>data.memories.filter(m=>m.label),[data.memories]);
   useEffect(()=>{setPhase('jar');setChosen([]);setActive(null);setCount(0)},[data.mode,data.revealCount,memories.length]);
   async function launch(){
@@ -32,10 +31,8 @@ export function MemoryJarExperience({data,compact=false}:{data:MemoryJarData;com
   function reveal(key:string){
     if(active||phase!=='choices'||chosen.includes(key)||chosen.length>=data.revealCount)return;
     setActive(key);
-    if(data.mode==='animals') setBurst(key);
     window.setTimeout(()=>{
       const next=[...chosen,key];setChosen(next);setActive(null);
-      if(data.mode==='animals') setBurst(null);
       if(next.length>=data.revealCount)setPhase('done');
     },data.mode==='colors'?420:300);
   }
@@ -52,7 +49,7 @@ export function MemoryJarExperience({data,compact=false}:{data:MemoryJarData;com
         const animalImage=data.mode==='animals'?animalAsset(m.animal,m.gender):'';
         const isChosen=chosen.includes(m.key),disabled=phase==='done'&&!isChosen;
         return <button key={m.key} type="button" disabled={disabled||isChosen} onClick={()=>reveal(m.key)} className={`mj-choice mj-pop-${i%4} ${isChosen?'is-chosen':''} ${active===m.key&&!isChosen?'is-opening':''}`} aria-label={`Reveal ${m.label}`}>
-          {data.mode==='animals'?<>{animalImage?<img src={animalImage} alt=""/>:<span className="mj-heart-ball" aria-hidden="true">♥</span>}{burst===m.key&&<img className="mj-burst-fx" src="/studio/effects/balloon-burst.webp" alt=""/>}</>:heartAsset(m.label)?<img className="mj-heart-ball-img" src={heartAsset(m.label)} alt={`${m.label} heart ball`}/>:<span className="mj-heart-ball" style={{'--heart-color':m.color||'#B72A57'} as React.CSSProperties}>♥</span>}
+          {data.mode==='animals'?<>{animalImage?<img src={animalImage} alt=""/>:<span className="mj-heart-ball" aria-hidden="true">♥</span>}</>:heartAsset(m.label)?<img className="mj-heart-ball-img" src={heartAsset(m.label)} alt={`${m.label} heart ball`}/>:<span className="mj-heart-ball" style={{'--heart-color':m.color||'#B72A57'} as React.CSSProperties}>♥</span>}
           <b>{m.label}</b>
         </button>
       })}

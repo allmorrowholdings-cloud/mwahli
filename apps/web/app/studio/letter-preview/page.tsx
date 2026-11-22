@@ -15,6 +15,7 @@ const sharedLetter=z.object({
 export default function SharedLetterPage(){
   const [letter,setLetter]=useState<z.infer<typeof sharedLetter>|null>(null);
   const [status,setStatus]=useState('Opening your letter…');
+  const [reading,setReading]=useState(false);
   const [supportsSpeech,setSupportsSpeech]=useState(false);
 
   useEffect(()=>{
@@ -35,22 +36,33 @@ export default function SharedLetterPage(){
 
   function readAloud(){
     if(!letter||!supportsSpeech)return;
-    window.speechSynthesis.cancel();
+    if(reading){
+      window.speechSynthesis.cancel();
+      setReading(false);
+      return;
+    }
     const speech=new SpeechSynthesisUtterance([letter.text,letter.signOff].filter(Boolean).join('\n\n'));
+    speech.onend=()=>setReading(false);
     speech.onerror=event=>{
+      setReading(false);
       if(event.error!=='canceled'&&event.error!=='interrupted')setStatus('Your browser could not read this letter aloud.');
     };
     setStatus('');
+    setReading(true);
     window.speechSynthesis.speak(speech);
   }
 
   return <main className="mx-auto max-w-3xl px-4 py-8">
     {letter&&<>
-      <LetterPreview {...letter}/>
-      {supportsSpeech&&<div className="mt-4 flex flex-wrap gap-2">
-        <button type="button" className={softButton} onClick={readAloud}>Read aloud</button>
-        <button type="button" className={softButton} onClick={()=>window.speechSynthesis.cancel()}>Stop reading</button>
+      {supportsSpeech&&<div className="mb-4 flex justify-end">
+        <button type="button" className={softButton} aria-label={reading?'Stop reading':'Read aloud'} title={reading?'Stop reading':'Read aloud'} onClick={readAloud}>
+          <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M11 5 6 9H3v6h3l5 4z"/>
+            {reading?<path d="m16 9 6 6m0-6-6 6"/>:<path d="M15 9a4 4 0 0 1 0 6m3-9a8 8 0 0 1 0 12"/>}
+          </svg>
+        </button>
       </div>}
+      <LetterPreview {...letter}/>
     </>}
     {status&&<p role="status">{status}</p>}
   </main>;
