@@ -5,6 +5,7 @@ const studioActions = [
   ['Write a Letter', '/studio/editor?tool=love-letter'],
   ['Share a Memory', '/studio/editor?tool=memory-jar'],
   ['Draw & Share', '/studio/editor?tool=art4u'],
+  ['Goodie & Gift', '/goodies'],
 ] as const;
 const featureCards=[
   ['Capsule','Send a moment to the future.','/brand/mwahli-card-capsule.webp'],
